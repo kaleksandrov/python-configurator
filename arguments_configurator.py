@@ -37,4 +37,8 @@ class ArgsConfigurator(Configurator):
             sys.exit(3)
             print "Unknown property %s" % opt
 
+         for option in self._options:
+            if option.name not in config:
+                config[option.name] = option.default
+
       return config
