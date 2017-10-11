@@ -2,9 +2,9 @@ from config import Configurator, Option
 
 class ArgsConfigurator(Configurator):
 
-   def __init__(self, options):
-      super(self.__class__, self).__init__(options)
-      self._config = None
+   def __init__(self):
+      super(self.__class__, self).__init__()
+      self._options = None
 
    def _load(self):
       import sys
@@ -36,9 +36,5 @@ class ArgsConfigurator(Configurator):
          else:
             sys.exit(3)
             print "Unknown property %s" % opt
-
-         for option in self._options:
-            if option.name not in config:
-                config[option.name] = option.default
 
       return config
