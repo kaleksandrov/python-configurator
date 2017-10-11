@@ -58,14 +58,21 @@ class Configurator(object):
    Abstract configurator class
    """
 
-   def __init__(self, options):
+   def setup(self, options):
       self._options = options
-
+      self._config = None
 
    @property
    def config(self):
+      if not self._options:
+         raise Exception('First you need to call Configurator.setup(options)')
+
       if not self._config:
          self._config = self._load()
+
+         for option in self._options:
+            if option.name not in self._config:
+                self._config[option.name] = option.default
 
       return self._config
 
